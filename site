@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOSSMAN BUILDERS - Sell Your House Fast</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.5em;
+        }
+        .container {
+            max-width: 600px;
+            margin: 30px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .question {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+        input[type="text"], input[type="number"], select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0 20px 0;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>BOSSMAN BUILDERS</h1>
+        <p>Sell Your House Fast</p>
+    </header>
+
+    <div class="container">
+        <form id="sellHouseForm">
+            <div class="question" id="question1">
+                <label>What is the address of your property?</label>
+                <input type="text" id="address" placeholder="Enter property address" required>
+                <button type="button" onclick="nextQuestion(2)">Next</button>
+            </div>
+
+            <div class="question" id="question2" style="display: none;">
+                <label>What is the condition of your property?</label>
+                <select id="condition">
+                    <option value="Excellent">Excellent</option>
+                    <option value="Good">Good</option>
+                    <option value="Fair">Fair</option>
+                    <option value="Poor">Poor</option>
+                </select>
+                <button type="button" onclick="nextQuestion(3)">Next</button>
+            </div>
+
+            <div class="question" id="question3" style="display: none;">
+                <label>What is your asking price?</label>
+                <input type="number" id="price" placeholder="Enter asking price" required>
+                <button type="button" onclick="nextQuestion(4)">Next</button>
+            </div>
+
+            <div class="question" id="question4" style="display: none;">
+                <label>Why are you selling?</label>
+                <input type="text" id="reason" placeholder="Enter your reason for selling" required>
+                <button type="button" onclick="submitForm()">Submit</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function nextQuestion(questionNumber) {
+            document.querySelectorAll('.question').forEach((div) => {
+                div.style.display = 'none';
+            });
+            document.getElementById('question' + questionNumber).style.display = 'block';
+        }
+
+        function submitForm() {
+            const address = document.getElementById('address').value;
+            const condition = document.getElementById('condition').value;
+            const price = document.getElementById('price').value;
+            const reason = document.getElementById('reason').value;
+
+            if (address && condition && price && reason) {
+                alert('Thank you! We will review your property information and contact you with a cash offer soon.');
+                // Here you can send the form data to your server for processing
+                document.getElementById('sellHouseForm').reset();
+                nextQuestion(1);
+            } else {
+                alert('Please fill out all fields.');
+            }
+        }
+    </script>
+</body>
+</html>
